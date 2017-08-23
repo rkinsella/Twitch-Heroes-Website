@@ -1,0 +1,130 @@
+<% layout('layout') -%>
+
+<br><br>
+<table border="1" id = 'search'>
+<caption>
+<span>Current Quests</span>
+</caption>
+<% for (var i=0; i<rows.length; i++) { 
+
+var available = rows[i].Available;
+if (rows[i].quest_id != null && available == 'Active') {
+	var quest_id = rows[i].quest_id;
+	var questName = rows[i].name;
+  var questDescription = rows[i].description;
+  var questCurrent = 0;
+  var questGoal = rows[i].goal;	
+  var questReward = rows[i].reward;	
+  var questRepeatable = rows[i].repeatable;	
+  var progress = rows[i].progress; 
+  var type = rows[i].type; 
+
+%>
+
+<tr id = 'quests'>
+<td id = 'search'>
+
+<h3><%= questName %></h3>
+<br>
+
+
+<h3><%= questDescription %></h3>
+<br>
+
+<h3> <%= progress %> / <%= questGoal %></h3>
+<br>
+
+<% if (questRepeatable == 1) { %> 
+<h3>Repeatable</h3>
+<% } %>
+
+
+<% if (questRepeatable == 0) { %> 
+<h3>Non-Repeatable</h3>
+<% } %>
+<br>
+
+<% if (type == 1) { %> 
+<h3>Reward : <%= questReward/1000 %> <img style="vertical-align:middle" src="images/gold-icon.png"/></h3>
+<% } %>
+
+<% if (type == 2) { %> 
+<h3>Reward : <%= questReward %> <img style="vertical-align:middle" src="images/key.png"/>
+<% } %>
+<br>
+
+
+<% if (progress >= questGoal) { %>
+<form action='/quests/completequest' method='post'>
+<button type='submit' name = 'completequest' value=<%= quest_id %>> Complete Quest </button>
+</form>
+<%  } %>
+
+<br>
+</td>
+</tr>
+<% } } %>
+
+</table>
+
+<table border="1" id = 'search'>
+
+<caption>
+<span>Available Quests</span>
+</caption>
+
+
+<% for (var i=0; i<rows.length; i++) { 
+
+	if (rows[i].Available == 'Available') {
+	var quest_id = rows[i].quest_id;
+  var questName = rows[i].name;
+  var questDescription = rows[i].description;
+  var progress = rows[i].progress;
+  var questGoal = rows[i].goal; 
+  var questReward = rows[i].reward; 
+  var questRepeatable = rows[i].repeatable; 
+  var type = rows[i].type;
+%>
+
+<tr id = 'quests'>
+<td id = 'search'>
+
+<h3><%= questName %></h3>
+
+<br>
+
+<h3><%= questDescription %></h3>
+
+<br>
+
+<% if (questRepeatable == 1) { %> 
+<h3>Repeatable</h3>
+<% } %>
+
+<% if (questRepeatable == 0) { %> 
+<h3>Non-Repeatable</h3>
+<% } %>
+
+<br>
+
+<% if (type == 1) { %> 
+<h3>Reward : <%= questReward/1000 %> <img style="vertical-align:middle" src="images/gold-icon.png"/></h3>
+<% } %>
+
+<% if (type == 2) { %> 
+<h3>Reward : <%= questReward %> <img style="vertical-align:middle" src="images/key.png"/>
+<% } %>
+
+<br>
+
+
+<form action='/quests/acceptquest' method='post'>
+<button type='submit' name = 'acceptquest' value=<%= quest_id %>> Accept quest </button>
+</form>
+
+</td>
+</tr>
+<% } } %>
+
+

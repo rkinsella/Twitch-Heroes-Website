@@ -1,0 +1,211 @@
+<% layout('layout') -%>
+
+
+
+<% if (rows.length==0) { %>
+<br></br>
+	<statsbox>
+	<span> You don't have an acount yet. </span>
+	<span>You can create one at <a href="https://www.twitch.tv/twitch_heroes">TwitchHeroes.TV </a> </span>
+	</span>
+	</statsbox>
+<%  } %>
+
+<% if (rows.length>0) { %>
+
+<% 
+		var totalxp = 16*(Math.log10(rows[0].exp));
+		var level =  Math.floor(totalxp);
+ 		var nextLevelExp = Math.floor(Math.pow(10, (level + 1)/16));	
+ 		var itemsArmor = rows[0].totalArmor;
+		var itemsHealth = rows[0].totalHealth;
+		var itemsCrit = rows[0].totalCrit;
+		var itemsLifesteal = rows[0].totalLifesteal
+		var itemsMinDamage = rows[0].minDamage;
+		var itemsMaxDamage = rows[0].maxDamage;
+		var itemsStrength = rows[0].totalStrength;
+		var itemsIntelligence = rows[0].totalIntelligence;
+		var itemsDexterity = rows[0].totalDexterity;
+ %>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Level</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= level %> (#<%= rows.rank %>)</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Class</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3>
+  		<% if (rows[0].class == 1) { %>
+			Wizard
+		<% } %>
+
+		<% if (rows[0].class == 2) { %>
+			Warrior
+		<% } %>
+
+		<% if (rows[0].class == 3) { %>
+			Archer
+		<% } %>	
+		</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Experience</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= rows[0].exp %>/<%= nextLevelExp %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Damage</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3>
+			
+			<%=  itemsMinDamage %> - <%=  itemsMaxDamage %>
+
+  		</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Health</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsHealth %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Armor</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsArmor %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Intelligence</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsIntelligence %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Strength</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsStrength %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Dexterity</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsDexterity %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Crit Chance</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= itemsCrit %>%</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Crit Damage</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3>100%</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Lifesteal</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= parseFloat(Math.round((itemsLifesteal/7) * 100) / 100).toFixed(2) %>%</h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Player Kills</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= rows[0].player_kills %></h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Monster Kills</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= rows[0].monster_kills %> </h3>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h3>Deaths</h3>
+  		</td>
+  		<td id = 'search'>
+  		<h3><%= rows[0].deaths %></h3>
+  		</td>
+  	</tr>
+
+
+  </table>
+</div>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Intelligence will increase your damage by 1 for each point of intelligence if you are a wizard.</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Strength will increase your damage by 1 for each point of strength if you are a warrior.</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Dexterity will increase your damage by 1 for each point of dexterity if you are an archer.</h4>
+  		</td>
+  	</tr>
+
+  </table>
+</div>
+
+<%  } %>

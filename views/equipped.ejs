@@ -1,0 +1,195 @@
+<% layout('layout') -%>
+
+<% 
+  
+  var equipment = {};
+  for(var i=0; i < rows.length; i++) {
+    if (rows[i].armor_type == 1 && rows[i].Inventory == 'Equipped') {
+      equipment.helmet = rows[i];
+    } else if (rows[i].armor_type == 2 && rows[i].Inventory == 'Equipped') {
+      equipment.armor = rows[i];
+    } else if (rows[i].armor_type == 3 && rows[i].Inventory == 'Equipped') {
+      equipment.boots = rows[i];
+    } else if (rows[i].armor_type == 6 && rows[i].Inventory == 'Equipped') {
+      equipment.weapon = rows[i];
+    } else if (rows[i].armor_type == 7 && rows[i].Inventory == 'Equipped') {
+      equipment.belt = rows[i];
+    } else if (rows[i].armor_type == 8 && rows[i].Inventory == 'Equipped') {
+      equipment.leggings = rows[i];
+    } else if (rows[i].armor_type == 9 && rows[i].Inventory == 'Equipped') {
+      equipment.gloves = rows[i];
+    } else if (rows[i].armor_type == 11 && rows[i].Inventory == 'Equipped') {
+      equipment.necklace = rows[i];
+    } else if (rows[i].armor_type == 10 && rows[i].Inventory == 'Equipped') {
+      equipment.ring = rows[i];
+    }
+  }
+  
+  var orderItems = ['necklace', 'helmet', 'ring', 'weapon', 'armor', 'belt', 'gloves', 'leggings', 'boots'];
+%>
+
+<div class="equipment">
+  <p>Equipment</p>
+  <div class="items">
+  <%
+    for(var i=0; i < orderItems.length; i++) {
+      var itemType = orderItems[i];
+  %>
+    
+    <% if(typeof equipment[itemType] != "undefined") {
+        var item = equipment[itemType];
+    %>
+      <div class="item quality<%= item.quality %>">
+      <div class="name">
+        <%= item.item_name %>
+      </div>
+      <div class="statsContainer">
+        <div class="stats">
+          <% if (item.mindamage > 0) { %>
+            <%= item.mindamage %> - <%= item.maxdamage %> Damage <br>
+          <% } %>
+   
+          <% if (item.damage > 0) { %>
+            <%= item.damage %> Damage <br>
+          <% } %>
+   
+          <% if (item.strength > 0) { %>
+            <%= item.strength %> Strength <br>
+          <% } %>
+   
+          <% if (item.intelligence > 0) { %>
+            <%= item.intelligence %>  Intelligence <br>
+          <% } %>
+   
+          <% if (item.dexterity > 0) { %>
+            <%= item.dexterity %> Dexterity <br>
+          <% } %>
+   
+          <% if (item.health > 0) { %>
+            <%= item.health %> Health <br>
+          <% } %>
+   
+          <% if (item.crit > 0) { %>
+            <%= item.crit %> % Crit <br>
+          <% } %>
+   
+          <% if (item.lifesteal > 0) { %>
+            <%= item.lifesteal %> % Lifesteal <br>
+          <% } %>
+   
+          <% if (item.armor_type == 1 || item.armor_type == 2 || item.armor_type == 3 || item.armor_type == 8) { %>
+            <%= item.armor + item.item_level %> Armor <br>
+          <% } else if (item.armor > 0) {%>
+            <%= item.armor %> Armor <br>
+          <% } %>
+        </div>
+      </div>
+      <div class="button">
+        <form action='/equipped/unequip' method='post'>
+          <button type="submit" name="unequip" value="<%= item.item_id %>">Unequip</button>
+        </form>
+      </div>
+      </div>
+    <% } %>
+    
+  <% } %>
+  </div>
+</div>
+
+<%
+  var countSlots = rows.slots;
+  var countItems = 0;
+  
+  var sellAllValue = 0;
+  for(var i=0; i < rows.length; i++) {
+    var item = rows[i];
+    if(item.Inventory == 'Inventory') {
+      sellAllValue += item.quality*10*item.item_level;
+      countItems++;
+    }
+  }
+  
+  var info = [countItems, sellAllValue];
+%>
+
+<div class="inventory">
+  <p>
+    Inventory
+    <% if(countItems > 0) { %>
+      (<%= countItems %>/<%= countSlots %>)
+      <br>
+      <div class="sellall">
+      <form action='/equipped/sellall' method='post' id = 'sellallform'>
+        <button type='submit' value="<%= info %>" name='sellall' id = 'sellall'>
+          Sell All <%=  Math.floor(sellAllValue/1000) %> <img style="vertical-align:middle" src="images/gold-icon.png"/> <%= sellAllValue%1000 %> <img style="vertical-align:middle" src="images/silver-coin.png"/>
+        </button>
+      </form>
+      </div>
+    <% } %>
+  </p>
+  <div class="items">
+    <%
+      for(var i=0; i < rows.length; i++) {
+        var item = rows[i];
+        if(item && item.sold != true && item.Inventory == 'Inventory') {
+    %>
+      <div class="item quality<%= item.quality %>">
+        <div class="name">
+        <%= item.item_name %>
+      </div>
+      <div class="statsContainer">
+        <div class="stats">
+          <% if (item.mindamage > 0) { %>
+            <%= item.mindamage %> - <%= item.maxdamage %> Damage <br>
+          <% } %>
+   
+          <% if (item.damage > 0) { %>
+            <%= item.damage %> Damage <br>
+          <% } %>
+   
+          <% if (item.strength > 0) { %>
+            <%= item.strength %> Strength <br>
+          <% } %>
+   
+          <% if (item.intelligence > 0) { %>
+            <%= item.intelligence %>  Intelligence <br>
+          <% } %>
+   
+          <% if (item.dexterity > 0) { %>
+            <%= item.dexterity %> Dexterity <br>
+          <% } %>
+   
+          <% if (item.health > 0) { %>
+            <%= item.health %> Health <br>
+          <% } %>
+   
+          <% if (item.crit > 0) { %>
+            <%= item.crit %> % Crit <br>
+          <% } %>
+   
+          <% if (item.lifesteal > 0) { %>
+            <%= item.lifesteal %> % Lifesteal <br>
+          <% } %>
+   
+          <% if (item.armor_type == 1 || item.armor_type == 2 || item.armor_type == 3 || item.armor_type == 8) { %>
+            <%= item.armor + item.item_level %> Armor <br>
+          <% } else if (item.armor > 0) {%>
+            <%= item.armor %> Armor <br>
+          <% } %>
+        </div>
+      </div>
+      <div class="buttons">
+        <form action='/equipped/equip' method='post'>
+          <button type='submit' name='equip' value="<%= item.item_id %>">Equip</button>
+        </form>
+        <form action='/equipped/store' method='post'>
+          <button type='submit' name='store' value="<%= item.item_id %>">Store</button>
+        </form>
+      </div>
+      </div>
+    <%  
+        }
+      }
+    %>
+  </div>
+</div>

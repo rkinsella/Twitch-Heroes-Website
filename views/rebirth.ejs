@@ -1,0 +1,134 @@
+<% layout('layout') -%>
+
+<%
+	var availableSouls = rows[0].available_souls;
+	var totalSouls = rows[0].total_souls;
+	var exp = rows[0].exp;
+	var level =  Math.floor(16*(Math.log10(exp)));
+	var numTimesRebirthed = rows[0].numtimes_rebirthed;
+
+	var strength = rows[0].strength;
+	var intelligence = rows[0].intelligence;
+	var dexterity = rows[0].dexterity;
+	var crit = rows[0].crit;
+	var health = rows[0].health;
+	var armor = rows[0].armor;
+ 	var lifesteal = rows[0].lifesteal;
+
+  var keepweapon = rows[0].keepweapon;
+  var keeparmor = rows[0].keeparmor;
+  var keephelmet = rows[0].keephelmet;
+  var keepboots = rows[0].keepboots;
+  var keepgloves = rows[0].keepgloves;
+  var keepleggings = rows[0].keepleggings;
+  var keepbelt = rows[0].keepbelt;
+  var keepring = rows[0].keepring;
+  var keepnecklace = rows[0].keepnecklace;
+  var keepcraftinglevel = rows[0].keepcraftinglevel;
+
+  var talents = ['Strength', 'Intelligence', 'Dexterity', 'Crit', 'Health', 'Lifesteal', 'Armor', 'Keep Equipped Weapon', 'Keep Equipped Armor', 'Keep Equipped Helmet', 'Keep Equipped Boots', 'Keep Equipped Gloves', 'Keep Equipped Leggings', 'Keep Equipped Belt', 'Keep Equipped Ring', 'Keep Equipped Necklace', 'Keep Crafting Level'];
+  var talentQueryVariables = ['strength', 'intelligence', 'dexterity', 'crit', 'health', 'lifesteal', 'armor', 'keepweapon', 'keeparmor', 'keephelmet', 'keepboots', 'keepgloves', 'keepleggings', 'keepbelt', 'keepring', 'keepnecklace', 'keepcraftinglevel'];
+  var talentVariables = [strength, intelligence, dexterity, crit, health, lifesteal, armor, keepweapon, keeparmor, keephelmet, keepboots, keepgloves, keepleggings, keepbelt, keepring, keepnecklace, keepcraftinglevel];
+
+  var increasePerLevel = [1, 1, 1, 1, 100, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var talentCosts = [1, 1, 1, 2, 1, 3, 2, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150];
+  var talentMaxLevel = [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+%>
+  <div class="bank">
+    <p>
+      <h4>Available Souls: <%= availableSouls %></h4><br>
+      <h4>Total Souls: <%= totalSouls %></h4><br>
+      <h4>Rebirths: <%= numTimesRebirthed %></h4>
+    </p>
+    <div class="items">
+    
+    <%
+      for(var i=0; i < talents.length; i++) {
+    %>
+      <div class="talent">
+      <div class="name">
+
+      <h4>
+      <%= talents[i] %>
+
+      <% if (increasePerLevel[i] != 0) { %>
+        (+<%= increasePerLevel[i] %> per level)
+
+      <%} %>
+      </h4>
+      <br>
+
+      </div>
+      
+      <div class="talentContainer">
+        <div class="stats">
+
+          <h4>
+          Current: 
+          <% if (talentMaxLevel[i] == 0) { %>
+            +
+            <% if (talents[i] == 'Health') { %>
+              <%= talentVariables[i] * 100%>
+            <% } else { %>
+
+              <%= talentVariables[i]%>
+            <% } %>
+          <% } %>
+
+          <% if (talentMaxLevel[i] == 1 && talentVariables[i] >= 1) { %>
+          Max
+          <% } %>
+
+          <% if (talentMaxLevel[i] == 1 && talentVariables[i] == 0) { %>
+          <%= talentVariables[i]%>
+          <% } %>
+
+          </h4>
+
+          <% if ((talentMaxLevel[i] == 0) || (talentMaxLevel[i] == 1 && talentVariables[i] == 0) ) { %>
+          <form action='/rebirth/buyskill' method='get'>
+            <button type='submit' name = 'talent' value = <%= talentQueryVariables[i] %> > 
+              <h4>Upgrade <%= talentVariables[i]*talentCosts[i] + talentCosts[i]%> Souls</h4>
+            </button>
+          </form>
+          <% } %>
+
+          <% if (talentMaxLevel[i] == 1 && talentVariables[i] >= 1) { %>
+          <button type='submit' name = 'talent'> 
+              <h4>Max Level</h4>
+            </button>
+          <% } %>
+
+      </div>
+      </div>
+      </div>
+
+    <% } %>
+    </div>
+    <p>
+      <% if (level >= 120) { %>
+      <form action='/rebirth/rebirth' method='get'>
+        <button type='submit' name = 'convert'> 
+          <h4>Rebirth for <%= Math.floor(120 + (exp/5000000))%> souls</h4>
+        </button>
+      </form>
+      <br>
+      <% } %>
+      <form action='/rebirth/reset' method='get'>
+        <button type='submit' name = 'convert'> 
+          <h4>Respec</h4>
+        </button>
+      </form>
+
+
+    </p>
+
+    <p>
+    <h5>
+      What is a rebirth? <br>
+
+A rebirth is resetting your character to level 1, resetting all of your items, crafting experience, stone and wood. You will still keep your gold, I'm not sure if I want to reset gold or not yet. By doing this, you will gain souls which can be used to boost your hero's power through talents. You need to be level 120 to rebirth. When you rebirth, you will gain 120 souls plus a soul for every 5 million experience you've gained.
+  </h5>
+    </p>
+  </div>
+

@@ -1,0 +1,701 @@
+<% layout('layout') -%>
+
+<%  if (typeof rows == 'undefined') { %>
+<div id="table_container">
+  <table border="1" id = 'left'> 
+  <caption>
+
+<span>Auction House</span>
+<br>
+<span> 0 Item Results  </span><br><br>
+
+<div id="table_container">
+  <table border="1" id = 'left'> 
+
+<form action='/auction/search' method='get'>
+
+<tr>
+  <td id = 'search'>
+  <h4>Armor Type</h4>
+  </td>
+  <td id = 'search'>
+  <select name="armortype">
+  <option value="0">All Items</option>
+  <option value="1">Helmet</option>
+  <option value="2">Armor</option>
+  <option value="3">Boots</option>
+  <option value="6">Weapon</option>
+  <option value="7">Belt</option>
+  <option value="8">Leggings</option>
+  <option value="9">Gloves</option>
+  <option value="10">Ring</option>
+  <option value="11">Necklace</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Quality</h4>
+  </td>
+  <td id = 'search'>
+  <select name="quality">
+  <option value="0">All</option>
+  <option value="4">Red</option>
+  <option value="3">Yellow</option>
+  <option value="2">Blue</option>
+  <option value="1">White</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>All Auctions</h4>
+  </td>
+  <td id = 'search'>
+  <select name="auctionowner">
+  <option value="0">All Items</option>
+  <option value="1">My Auctions</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Offense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Weapon Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="mindamage" placeholder="min">
+  </td>
+  <td id = 'search'>
+  <input type="text" name="maxdamage" placeholder="max">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="damage" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Intelligence</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="intelligence" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Strength</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="strength" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Dexterity</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="dexterity" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Crit</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="crit" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Defense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Health</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="health" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Armor</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="armor" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Lifesteal</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="lifesteal" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <button type='submit' name = 'search'> 
+  Search
+  </td>
+</tr>
+
+</form>
+</table>
+</caption>
+
+
+<%  for(var i=0; i < 2; i++) { %>
+      <tr>
+<%    for(var j=0; j<7; j++) { %>
+      <td>
+      </td>
+ <%  } %>
+    </tr>
+ <%  } %>    
+
+</table>
+</div>
+<% } %>
+
+<%  if (typeof rows !== 'undefined') { %>
+<%  if (rows.length == 0) { %>
+
+<div id="table_container">
+  <table border="1" id = 'left'> 
+  <caption>
+
+<span>Auction House</span>
+<br>
+<span> 0 Item Results  </span><br>
+<form action='/auction/search' method='get'>
+<tr>
+  <td id = 'search'>
+  <h4>Armor Type</h4>
+  </td>
+  <td id = 'search'>
+  <select name="armortype">
+  <option value="0">All Items</option>
+  <option value="1">Helmet</option>
+  <option value="2">Armor</option>
+  <option value="3">Boots</option>
+  <option value="6">Weapon</option>
+  <option value="7">Belt</option>
+  <option value="8">Leggings</option>
+  <option value="9">Gloves</option>
+  <option value="10">Ring</option>
+  <option value="11">Necklace</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Quality</h4>
+  </td>
+  <td id = 'search'>
+  <select name="quality">
+  <option value="0">All</option>
+  <option value="4">Red</option>
+  <option value="3">Yellow</option>
+  <option value="2">Blue</option>
+  <option value="1">White</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>All Auctions</h4>
+  </td>
+  <td id = 'search'>
+  <select name="auctionowner">
+  <option value="0">All Items</option>
+  <option value="1">My Auctions</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Offense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Weapon Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="mindamage" placeholder="min">
+  </td>
+  <td id = 'search'>
+  <input type="text" name="maxdamage" placeholder="max">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="damage" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Intelligence</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="intelligence" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Strength</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="strength" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Dexterity</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="dexterity" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Crit</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="crit" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Defense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Health</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="health" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Armor</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="armor" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Lifesteal</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="lifesteal" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <button type='submit' name = 'search'> 
+  Search
+  </td>
+</tr>
+
+</form>
+</caption>
+
+
+<%  for(var i=0; i < 2; i++) { %>
+      <tr>
+<%    for(var j=0; j<7; j++) { %>
+      <td>
+      </td>
+ <%  } %>
+    </tr>
+ <%  } %>    
+
+</table>
+</div>
+
+<% } %>
+<% } %>
+
+
+<%  if (typeof rows !== 'undefined') { %>
+<%  if (rows.length > 0) { %>
+
+<%
+  
+
+%>
+<div id="table_container">
+<!-- Bank Table -->
+<table border="1" id = 'left'> 
+<caption>
+
+<span>Auction House</span> 
+<br>
+
+<span> <%= rows.length %> Item Results  </span><br>
+
+<form action='/auction/search' method='get'>
+<tr>
+  <td id = 'search'>
+  <h4>Armor Type</h4>
+  </td>
+  <td id = 'search'>
+  <select name="armortype">
+  <option value="0">All Items</option>
+  <option value="1">Helmet</option>
+  <option value="2">Armor</option>
+  <option value="3">Boots</option>
+  <option value="6">Weapon</option>
+  <option value="7">Belt</option>
+  <option value="8">Leggings</option>
+  <option value="9">Gloves</option>
+  <option value="10">Ring</option>
+  <option value="11">Necklace</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Quality</h4>
+  </td>
+  <td id = 'search'>
+  <select name="quality">
+  <option value="0">All</option>
+  <option value="4">Red</option>
+  <option value="3">Yellow</option>
+  <option value="2">Blue</option>
+  <option value="1">White</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>All Auctions</h4>
+  </td>
+  <td id = 'search'>
+  <select name="auctionowner">
+  <option value="0">All Items</option>
+  <option value="1">My Auctions</option>
+  </select>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Offense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Weapon Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="mindamage" placeholder="min">
+  </td>
+  <td id = 'search'>
+  <input type="text" name="maxdamage" placeholder="max">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Damage</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="damage" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Intelligence</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="intelligence" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Strength</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="strength" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Dexterity</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="dexterity" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Crit</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="crit" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h5> Defense </h5>
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Health</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="health" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Armor</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="armor" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <h4>Lifesteal</h4>
+  </td>
+  <td id = 'search'>
+  <input type="text" name="lifesteal" placeholder="0">
+  </td>
+</tr>
+
+<tr>
+  <td id = 'search'>
+  <button type='submit' name = 'search'> 
+  Search
+  </td>
+</tr>
+
+</form>
+
+</caption>
+
+<%  for(var i=0; i < rows.length/7; i++) { %>
+      <tr>
+<%    for(var j=0; j<7; j++) {
+      var position = i*7+j;
+
+ %>
+
+        <td>
+<%      if (rows[position]) { 
+			var invItemQuality = rows[position].quality;
+			var invItemName = rows[position].item_name;
+			var invItemDmg = rows[position].damage;
+			var invItemHealth = rows[position].health;
+			var invItemArmor = rows[position].armor;
+			var invItemLevel = rows[position].item_level;
+			var invItemID = rows[position].item_id;
+			var invItemCrit = rows[position].crit;
+			var invItemLifeSteal = rows[position].lifesteal;
+			var invArmorType = rows[position].armor_type;
+			var invArmorType = rows[position].armor_type;
+			var invMinDamage = rows[position].mindamage;
+			var invMaxDamage = rows[position].maxdamage;
+			var invStrength = rows[position].strength;
+			var invIntelligence = rows[position].intelligence;
+			var invDexterity = rows[position].dexterity;
+      var invSilver = (rows[position].sell_price)%1000; 
+			var invGold = Math.floor(rows[position].sell_price/1000);
+
+      var sellerUID = rows[position].sellerUID;
+      var buyerUID = rows[position].buyerUID;
+      var sellerLogin = rows[position].sellerLogin;
+
+          if (invItemQuality == 1) { %>
+            <quality1>
+            <%= invItemName %>
+            <br>
+            </quality1>
+<%        } else if (invItemQuality == 2) { %> 
+            <quality2>
+            <%= invItemName %>
+            <br>
+            </quality2>
+<%        } else if (invItemQuality == 3) { %>
+            <quality3>
+            <%= invItemName %>
+            <br>
+            </quality3>
+
+<%        } else if (invItemQuality == 4) { %>
+            <quality4>
+            <%= invItemName %>
+            <br>
+            </quality4>
+<%        } %>
+
+          <itemtext>
+
+<%        if (invMinDamage > 0) { %>
+            <%= invMinDamage %> - <%= invMaxDamage %>
+            Damage
+            <br>
+<%        } %>
+
+<%        if (invItemDmg > 0) { %>
+            <%= invItemDmg %> Damage 
+            <br>
+<%        } %>
+
+<%        if (invStrength > 0) { %>
+            <%= invStrength %> Strength 
+            <br>
+<%        } %>
+
+<%        if (invDexterity > 0) { %>
+            <%= invDexterity %> Dexterity 
+            <br>
+<%        } %>
+
+<%        if (invIntelligence > 0) { %>
+            <%= invIntelligence %> Intelligence 
+            <br>
+<%        } %>
+
+<%          if (invItemHealth > 0) { %>
+            <%= invItemHealth %> Health 
+            <br>
+<%        } %>
+
+<%      if (invItemCrit > 0) { %>
+          <%= invItemCrit%> 
+          % Crit 
+          <br>
+<%      } %>
+
+<%      if (invItemLifeSteal > 0) { %>
+          <%= invItemLifeSteal%> 
+          % Lifesteal 
+          <br>
+<%      } %>
+
+          
+<%      if (invArmorType == 1 || invArmorType == 2 || invArmorType == 3 || invArmorType == 8) { %>
+        <%= invItemArmor + invItemLevel %> 
+          Armor 
+          <br>
+<%      } %>
+
+<%      if (invArmorType != 1 && invArmorType != 2 && invArmorType != 3 && invArmorType != 8 && invItemArmor > 0) { %>
+        <%= invItemArmor %> 
+          Armor 
+          <br>
+<%      } %>
+          <br>
+
+          </itemtext>
+          
+          <% if (sellerUID != buyerUID) {%>
+          <form action='/auction/buy' method='post' id = 'auction'>
+          <button type='submit' name = 'buy' value=<%= invItemID %>> 
+
+          <% if (invGold > 0) { %>
+          <%= invGold %> <img style="vertical-align:middle" src="images/gold-icon.png"/> <br>
+          <% } %>
+
+          <% if (invSilver > 0) { %>
+          <%= invSilver %> <img style="vertical-align:middle" src="images/silver-coin.png"/>
+          <% } %>
+
+          </button>
+          </form>
+          <br>
+          <h4>
+          Seller: <br><%= sellerLogin %>
+          </h4>
+          <% } %>
+
+          <% if (sellerUID == buyerUID) {%>
+          <br>
+          <form action='/auction/takeoff' method='post' id = 'auction'>
+          <button type='submit' name = 'takeoff' value=<%= invItemID %>> 
+
+          <% if (invGold > 0) { %>
+          <%= invGold %> <img style="vertical-align:middle" src="images/gold-icon.png"/> <br>
+          <% } %>
+
+          <% if (invSilver > 0) { %>
+          <%= invSilver %> <img style="vertical-align:middle" src="images/silver-coin.png"/>
+          <% } %>
+
+          Take Off
+          </button>
+          </form>
+          <% } %>
+
+<%      } %> 
+        </td>
+<%    } %>
+      </tr>
+<%  } %>
+
+</table>
+</div>
+<%        } %>
+<%        } %>

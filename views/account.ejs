@@ -1,0 +1,266 @@
+<% layout('layout') -%>
+
+
+<% if (rows.length==0) { %>
+<br></br>
+	<statsbox>
+	<span> You don't have an acount yet. </span>
+	<span>You can create one at <a href="https://www.twitch.tv/twitch_heroes">TwitchHeroes.TV </a> </span>
+	</span>
+	</statsbox>
+<%  } %>
+
+<% if (rows.length>0) { %>
+
+<table border="1" id = 'search'> 
+  <form action='/account/usekey' method='get'>
+    <tr>
+      <td id = 'search'>
+        <h5><%= rows[0].num_keys %><img style="vertical-align:middle" src="images/key.png"/></h5>
+      </td>
+    </tr>
+
+    <% if (rows[0].num_keys > 0) {%>
+      <tr>
+        <td id = 'search'>
+          <button type='submit' name = 'usekey'> 
+          <h4>Use Key</h4>
+        </td>
+      </tr>
+    <% } %>
+
+  </form>
+</table>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+
+  <form action='/account/rgb' method='get'>
+
+  	<tr>
+  	<td id = 'search'>
+  		<h5>Health Bar Color (RGB Values between 0-255)</h5>
+  	</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Red</h4>
+  		</td>
+  		<td id = 'search'>
+  		<input type="text" name="red" placeholder=0>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Green</h4>
+  		</td>
+  		<td id = 'search'>
+  		<input type="text" name="green" placeholder=0>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Blue</h4>
+  		</td>
+  		<td id = 'search'>
+  		<input type="text" name="blue" placeholder=0>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<button type='submit' name = 'convert'> 
+  		<h4>Update</h4>
+  		</td>
+  	</tr>
+
+  	</form>
+  </table>
+</div>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  <tr>
+  	<td id = 'search'>
+  		<h4>Current class: </h4>
+  	</td>
+
+  	<td id = 'search'>
+  		<% if (rows[0].class == 1) { %>
+			<h4>Wizard</h4>
+		<% } %>
+
+		<% if (rows[0].class == 2) { %>
+			<h4>Warrior</h4>
+		<% } %>
+
+		<% if (rows[0].class == 3) { %>
+			<h4>Archer</h4>
+		<% } %>
+  	</td>
+  </tr>
+
+  <form action='/account/class' method='get'>
+  <tr>
+  	<td id = 'search'>
+  		<h4>Change class </h4>
+  	</td>
+
+  	<td id = 'search'>
+  		<select name="class">
+			<% if (rows[0].class != 1) { %>
+				<option value="1">Wizard</option>
+			<% } %>
+
+			<% if (rows[0].class != 2) { %>
+				<option value="2">Warrior</option>
+			<% } %>
+
+			<% if (rows[0].class != 3) { %>
+				<option value="3">Archer</option>
+			<% } %>
+		</select>
+  	</td>
+  </tr>
+
+  <tr>
+  	<td id = 'search'>
+  		<button type='submit' name = 'convert'> 
+  		<h4>Change Class</h4>
+  		</button>
+  	</td>
+  </tr>
+  </form>
+
+  </table>
+</div>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  <tr>
+  	<td id = 'search'>
+  		<h4>Hat</h4>
+  	</td>
+
+  	<td id = 'search'>
+  		<h4>
+  			<% if (rows[0].hat == 1) { %>
+				Default
+			<% } %>
+			<% if (rows[0].hat == 2) { %>
+				Blue
+			<% } %>
+
+			<% if (rows[0].hat == 3) { %>
+				Brown
+			<% } %>
+
+			<% if (rows[0].hat == 4) { %>
+				Green
+			<% } %>
+
+			<% if (rows[0].hat == 5) { %>
+				Pink
+			<% } %>
+
+			<% if (rows[0].hat == 6) { %>
+				Kappa
+			<% } %>
+
+			<% if (rows[0].hat== 7) { %>
+				4Head 
+			<% } %>
+
+			<% if (rows[0].hat == 8) { %>
+				EleGiggle
+			<% } %>
+
+			<% if (rows[0].hat == 9) { %>
+				PogChamp
+			<% } %>
+
+			<% if (rows[0].hat == 10) { %>
+				BibleThump
+			<% } %>
+
+			<% if (rows[0].hat == 11) { %>
+				FrankerZ
+			<% } %>
+		</h4>
+  	</td>
+  </tr>
+
+
+  <form action='/account/hat' method='get'>
+  <tr>
+  	<td id = 'search'>
+  		<h4>Change hat </h4>
+  	</td>
+
+  	<td id = 'search'>
+  		<select name="hat">
+			<% if (rows[0].hat != 1) { %>
+				<option value="1">Default</option>
+			<% } %>
+
+			<% if (rows[0].hat != 2) { %>
+				<option value="2">Blue</option>
+			<% } %>
+
+			<% if (rows[0].hat != 3) { %>
+				<option value="3">Brown</option>
+			<% } %>
+
+			<% if (rows[0].hat != 4) { %>
+				<option value="4">Green</option>
+			<% } %>
+
+			<% if (rows[0].hat != 5) { %>
+				<option value="5">Pink</option>
+			<% } %>
+
+			<% if (rows[0].hat != 6) { %>
+				<option value="6">Kappa</option>
+			<% } %>
+
+			<% if (rows[0].hat != 7) { %>
+				<option value="7">4Head</option>
+			<% } %>
+
+			<% if (rows[0].hat != 8) { %>
+				<option value="8">EleGiggle</option>
+			<% } %>
+
+			<% if (rows[0].hat != 9) { %>
+				<option value="9">PogChamp</option>
+			<% } %>
+
+			<% if (rows[0].hat != 10) { %>
+				<option value="10">BibleThump</option>
+			<% } %>
+
+			<% if (rows[0].hat != 11) { %>
+				<option value="11">FrankerZ</option>
+			<% } %>
+		</select>
+  	</td>
+  </tr>
+
+  <tr>
+  	<td id = 'search'>
+  		<button type='submit' name = 'convert'> 
+  		<h4>Change hat</h4>
+  		</button>
+  	</td>
+  </tr>
+  </form>
+
+  </table>
+</div>
+
+
+
+<%  } %>

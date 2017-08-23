@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-1349351292364148",
+    enable_page_level_ads: true
+  });
+</script>
+<title>Twitch Heroes</title>
+<link rel='stylesheet' href='/stylesheets/style10.css' />
+
+</head>
+
+
+<body>
+
+<script type="text/javascript">
+$('a').click(function(){
+    $(this).addClass('active').siblings().removeClass('active');
+})
+
+</script>
+
+
+<% if (!user) { %>
+
+	<div class="nav" id = "nav">
+
+	<ul>
+
+	<li>
+		<a href="/"<% if (page_name === 'home') { %>class="active" <% } %> >
+		<img src="images/twitchlogo.png" alt="th icon" id = "thlogo">
+		</a>
+	</li>
+	
+	<li>
+		<a href="/login"<% if (page_name === 'login') { %>class="active" <% } %> >
+		<img style="vertical-align:middle" src="images/account-white.png"/>
+		Login
+		</a>
+	</li>
+
+	<li>
+		<a href="/help"<% if (page_name === 'help') { %>class="active" <% } %> >
+		<img style="vertical-align:middle" src="images/help-white.png"/>
+		Help
+		</a>
+	</li>
+
+	</ul>
+
+	</div>
+
+<% } else { %>
+
+	
+	<div class="nav" id = "nav">
+
+	<ul>
+	
+	<li>
+	<a href="/"<% if (page_name === 'home') { %>class="active" <% } %> >
+	<img src="images/twitchlogo.png" alt="th icon" id = "thlogo">
+	</a>
+	</li>
+	
+
+	<li>
+	<a href='/ranking'<% if (page_name === 'ranking') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/helmet-white.png"/>
+	Ranking
+	</a>
+	</li>
+
+	<li>
+	<a href="/stats" <% if (page_name === 'stats') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/swords-white.png"/>
+	Stats
+	</a>
+	</li>
+
+	<li>
+	<a href='/quests'<% if (page_name === 'quests') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/quest.png"/>
+	Quests
+	</a>
+	</li>
+
+	<li>
+	<a href="/equipped"<% if (page_name === 'equipped') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/bag-white.png"/>
+	Inventory
+	</a>
+	</li>
+
+	<li>
+	<a href="/bank"<% if (page_name === 'bank') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/locked-chest-white.png"/>
+	Bank
+	</a>
+	</li>
+
+	<li>
+	<a href="/auction"<% if (page_name === 'auction') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/auction-white.png"/>
+	Auction
+	</a>
+	</li>
+
+	<li>
+	<a href="/shop"<% if (page_name === 'shop') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/bank-white.png"/>
+	Shop
+	</a>
+	</li>
+
+	<li>
+	<a href="/crafting"<% if (page_name === 'crafting') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/crafting-white.png"/>
+	Crafting
+	</a>
+	</li>
+
+	<li>
+	<a href="/rebirth"<% if (page_name === 'rebirth') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/egg-white.png"/>
+	Rebirth
+	</a>
+	</li>
+	
+
+	<li>
+	<a href="/account" 
+	<% if (page_name === 'account') { %>class="active" <% } %> >
+	<img style="vertical-align:middle" src="images/account-white.png"/>
+    
+	Account
+
+	</a>
+	</li>
+
+
+	<li>
+	<a href="/logout">
+	<img style="vertical-align:middle" src="images/logout-white.png"/>
+	Logout
+	</a>
+	</li>
+	
+	</ul>
+
+
+	</div>
+
+	
+<% } %>
+
+<%- body %>
+
+</body>
+
+
+</html>

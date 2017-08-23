@@ -1,0 +1,115 @@
+<% layout('layout') -%>
+
+<%  if (rows.length == 0) { %>
+<div id="table_container">
+  <table border="1" id = 'left'> 
+  <caption>
+
+<span>Bank</span>
+
+<span> (0/10) </span><br><br>
+
+</caption>
+
+
+<%  for(var i=0; i < 2; i++) { %>
+      <tr>
+<%    for(var j=0; j<5; j++) { %>
+      <td>
+      </td>
+ <%  } %>
+    </tr>
+ <%  } %>    
+<% } %>
+
+</table>
+</div>
+
+<%  if (rows.length > 0) { %>
+
+<%
+    var totalUsedSlots = rows.length; 
+    var totalSlots = rows[0].bankslots;
+    var numItems = 0; 
+    
+    var info = new Array();
+    info.push(numItems);
+
+%>
+
+<div class="bank">
+  <p>
+    Bank (<%= totalUsedSlots %>/<%= totalSlots %>)
+    <br>
+  </p>
+
+  <div class="items">
+
+  <%
+      for(var i=0; i < rows.length; i++) {
+        var item = rows[i];
+   %> 
+    <div class="item quality<%= item.quality %>">
+        <div class="name">
+          <%= item.item_name %>
+        </div>
+      <div class="statsContainer">
+        <div class="stats">
+          <% if (item.mindamage > 0) { %>
+            <%= item.mindamage %> - <%= item.maxdamage %> Damage <br>
+          <% } %>
+   
+          <% if (item.damage > 0) { %>
+            <%= item.damage %> Damage <br>
+          <% } %>
+   
+          <% if (item.strength > 0) { %>
+            <%= item.strength %> Strength <br>
+          <% } %>
+   
+          <% if (item.intelligence > 0) { %>
+            <%= item.intelligence %>  Intelligence <br>
+          <% } %>
+   
+          <% if (item.dexterity > 0) { %>
+            <%= item.dexterity %> Dexterity <br>
+          <% } %>
+   
+          <% if (item.health > 0) { %>
+            <%= item.health %> Health <br>
+          <% } %>
+   
+          <% if (item.crit > 0) { %>
+            <%= item.crit %> % Crit <br>
+          <% } %>
+   
+          <% if (item.lifesteal > 0) { %>
+            <%= item.lifesteal %> % Lifesteal <br>
+          <% } %>
+   
+          <% if (item.armor_type == 1 || item.armor_type == 2 || item.armor_type == 3 || item.armor_type == 8) { %>
+            <%= item.armor + item.item_level %> Armor <br>
+          <% } else if (item.armor > 0) {%>
+            <%= item.armor %> Armor <br>
+          <% } %>
+        </div>
+      </div>
+      <form action='/bank/takeout' method='post'>
+          <button type='submit' name = 'takeout' value=<%= item.item_id %>> Take out </button>
+          </form>
+
+          <form action='/bank/auction' method='get'>
+        
+          <h3>Gold <input type="text" name="gold"> <br>
+          </h3>
+          <h3>Silver <input type="text" name="silver">
+          </h3>
+          <button type='submit' name = 'auction' value=<%= item.item_id %>> Auction </button>
+          </form>
+      </div>
+   <% } %>
+   </div>    
+</div>
+
+
+<%        } %>

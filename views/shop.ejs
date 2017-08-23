@@ -1,0 +1,200 @@
+<% layout('layout') -%>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+
+<% if (rows.length==0) { %>
+
+	<statsbox>
+	<br>
+	 <span>You don't have an acount yet.
+	You can create one at <a href="https://www.twitch.tv/twitch_heroes">TwitchHeroes.TV </a> 
+	</span>
+	</statsbox>
+<%  } %>
+
+<% if (rows.length>0) { %>
+
+<% 
+var silver = (rows[0].gold)%1000; 
+var gold = Math.floor(rows[0].gold/1000);
+var damagetimeleft = rows[0].damageBuff - Date.now();
+var armortimeleft = rows[0].armorBuff - Date.now();
+var xptimeleft = rows[0].xpbuff - Date.now();  
+var bluetimeleft = rows[0].bluebuff - Date.now();  
+var whitetimeleft = rows[0].whitebuff - Date.now(); 
+%>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  	<tr>
+  		<td id = 'search'>
+  		<h4><%= gold %> <img style="vertical-align:middle" src="images/gold-icon.png"/> <%= silver %> <img style="vertical-align:middle" src="images/silver-coin.png"/></h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Damage + 10 (1 Hour)</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (damagetimeleft < 0 && rows[0].gold > 0)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'damagebuff'  name = 'buff'>1 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			</form>
+			<% } %>
+			
+			<% if (damagetimeleft > 0) { %>
+			<%= Math.floor(damagetimeleft/60000) %>
+			minutes
+      <%= Math.floor((damagetimeleft/60000 - Math.floor(damagetimeleft/60000))*60) %>
+      seconds
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Armor + 2 (1 Hour)</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (armortimeleft < 0 && rows[0].gold > 0)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'armorbuff' name = 'buff'>1 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			<% } %>
+			</form>
+			
+			<% if (armortimeleft > 0) { %>
+			<%= Math.floor(armortimeleft/60000) %>
+			minutes
+
+      <%= Math.floor((armortimeleft/60000 - Math.floor(armortimeleft/60000))*60) %>
+      seconds
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Don't loot white items (1 Hour)</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (whitetimeleft < 0 && rows[0].gold > 1000)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'whitebuff' name = 'buff'>1 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			<% } %>
+			</form>
+			
+			<% if (whitetimeleft > 0) { %>
+			<%= Math.floor(whitetimeleft/60000) %>
+			minutes
+
+      <%= Math.floor((whitetimeleft/60000 - Math.floor(whitetimeleft/60000))*60) %>
+      seconds
+
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Don't loot blue items (1 Hour)</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (bluetimeleft < 0 && rows[0].gold > 3000)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'bluebuff' name = 'buff'>3 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			<% } %>
+			</form>
+			
+			<% if (bluetimeleft > 0) { %>
+			<%= Math.floor(bluetimeleft/60000) %>
+			minutes
+
+      <%= Math.floor((bluetimeleft/60000 - Math.floor(bluetimeleft/60000))*60) %>
+      seconds
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>2x Experience (1 Hour)</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (xptimeleft < 0 && rows[0].gold > 15000)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'xpbuff' name = 'buff'>15 <img style="vertical-align:middle" src="images/			gold-icon.png"/></button>
+			<% } %>
+			</form>
+			
+			<% if (xptimeleft > 0) { %>
+			<%= Math.floor(xptimeleft/60000) %>
+			minutes
+       <%= Math.floor((xptimeleft/60000 - Math.floor(xptimeleft/60000))*60) %>
+      seconds
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Buy All Buffs</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (rows[0].gold > 21000)  { %> 
+			<form id='id' action='/shop/buff' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'allbuffs' name = 'buff'>21 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			<% } %>
+			</form>
+		</h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Add 1 Bank Slot</h4>
+  		</td>
+
+  		<td id = 'search'>
+  		<h4>
+  			<% if (rows[0].gold > 100000)  { %> 
+			<form id='id' action='/shop/bankslot' method='post'>
+			<button class = 'buffbutton' type='submit' value = 'bankslot' name = 'buff'>100 <img style="vertical-align:middle" src="images/gold-icon.png"/></button>
+			<% } %>
+		</h4>
+  		</td>
+  	</tr>
+
+  </table>
+</div>
+
+
+
+</statsbox>
+<%  } %>
+<script>
+$('form#id').submit(function(e){
+    $(this).children('input[type=submit]').attr('disabled', 'disabled');
+    // this is just for demonstration
+});
+</script>
+

@@ -1,0 +1,42 @@
+{
+  "name": "node-twitch-web",
+  "version": "1.0.0",
+  "description": "Node.js website using Twitch Authentication.",
+  "main": "twitch-web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Schmoopiie/node-twitch-web.git"
+  },
+  "keywords": [
+    "node.js",
+    "twitch",
+    "javascript"
+  ],
+  "author": {
+    "name": "Schmoopiie",
+    "email": "Schmoopiie@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Schmoopiie/node-twitch-web/issues"
+  },
+  "licenses": [{
+     "type": "MIT",
+     "url": "https://raw.github.com/Schmoopiie/node-twitch-web/master/LICENSE"
+   }],
+  "readmeFilename": "README.md",
+  "dependencies": {
+	"body-parser": "*",
+	"connect-mongo": "*",
+	"cookie-parser": "*",
+	"ejs-locals": "*",
+	"express": "*",
+	"express-session": "*",
+	"method-override": "*",
+	"passport": "*",
+	"passport-oauth": "*",
+	"serve-favicon": "*"
+  }
+}

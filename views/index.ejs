@@ -1,0 +1,64 @@
+
+<% layout('layout') -%>
+
+
+
+<% if (!user) { %>
+
+	<br>
+	<news> 
+
+	 <span>
+	Welcome to the Twitch Heroes official website.
+	</span>
+
+	<span>
+	If you don't have an account you can create one and start playing at <a href="https://www.twitch.tv/twitch_heroes">TwitchHeroes.TV </a> A hero will automatically be created for you while on the Twitch channel. 
+	</span>
+	<br></br>
+	<iframe 
+        src="http://player.twitch.tv/?channel=twitch_heroes" 
+        height="300" 
+        width="700" 
+        frameborder="0" 
+        scrolling="no"
+        allowfullscreen="false">
+    </iframe>
+    <br><br>
+	
+
+	
+
+	</news>
+<% } else { %>
+	
+	<br></br>
+	<news> 
+
+	<span> Hello, <%= user.username %>. </span>
+	<br>
+
+	 <span>
+	Welcome to the Twitch Heroes official website.
+	</span>
+
+	<br>
+	<iframe 
+        src="http://player.twitch.tv/?channel=twitch_heroes" 
+        height="300" 
+        width="700" 
+        frameborder="0" 
+        scrolling="no"
+        allowfullscreen="false">
+    </iframe>
+    <br><br>
+	
+
+	
+
+	</news>
+
+	
+
+
+<% } %>

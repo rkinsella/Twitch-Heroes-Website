@@ -1,0 +1,15 @@
+Currently using sublime text to edit code. If you aren't familiar with coding this would be a good start. 
+
+1. First you need to set up a database in MySQL. I guess I will provide the schema, giving out the current database will be too large. Only issue is testing will require insert queries which could be kind of tedious. If you need any help with queries just let me know on discord. 
+
+2. Change the file db.js under the utils folder to fit your database information which you created in step 1.
+
+3. You will need to create a twitch application which will serve as authenticating users. https://www.twitch.tv/kraken/oauth2/clients/new
+
+4. Modify the file config.js to fit the settings on the app you just created. 
+
+5. Create a mongo db either on the their website or locally. If you create it from the website you can link your mongo db under the config.js file. Otherwise I'm not entirely sure, I haven't looked at this code in a while and not 100% on whether it will work or not. 
+
+6. To run you will need to open the command line (cmd) and go under the folder and type node twitch-web.js. You can also create a bat file to make this easier. (node C:\Users\....user etc\twitch-web.js 
+
+If it works let me know. Otherwise ask for help. Might of missed something.

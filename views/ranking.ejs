@@ -1,0 +1,466 @@
+<% layout('layout') -%>
+
+<% if (tab_name == 'rebirths') {
+	var rebirthRows = rows;
+	sortByRebirths();
+
+	var numAccounts = rebirthRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% function sortByRebirths() {
+	for (var i=0; i<rebirthRows.length; i++ ) { 
+		for (var j=0; j<rebirthRows.length; j++ ) { 
+			if (rebirthRows[i].numtimes_rebirthed > rebirthRows[j].numtimes_rebirthed) {
+				swapRebirth(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function swapRebirth(a,b) {
+	var temp = rebirthRows[a];
+	var temp2 = rebirthRows[b];
+	rebirthRows[a] = temp2;
+	rebirthRows[b] = temp;
+}%>
+
+<% if (tab_name == 'level') {
+	var expRows = rows;
+	sortByExp();
+
+	var numAccounts = expRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'damage') {
+	var damageRows = rows;
+	sortByDamage();
+
+	var numAccounts = damageRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'crit') {
+	var critRows = rows;
+	sortByCrit();
+
+	var numAccounts = critRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'health') {
+	var healthRows = rows;
+	sortByHealth();
+
+	var numAccounts = healthRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'lifesteal') {
+	var lifestealRows = rows;
+	sortByLifesteal();
+
+	var numAccounts = lifestealRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'armor') {
+	var armorRows = rows;
+	sortByArmor();
+
+	var numAccounts = armorRows.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% if (tab_name == 'playerkills') {
+	var playerKills = rows;
+	sortByPlayerKills();
+
+	var numAccounts = playerKills.length;
+	
+	if (numAccounts > 100) { 
+		numAccounts = 100; 
+	} 
+} %>
+
+<% function sortByExp() {
+	for (var i=0; i<expRows.length; i++ ) { 
+		for (var j=0; j<expRows.length; j++ ) { 
+			if (expRows[i].exp > expRows[j].exp) {
+				swapEXP(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function sortByCrit() {
+	for (var i=0; i<critRows.length; i++ ) { 
+		for (var j=0; j<critRows.length; j++ ) { 
+			if (critRows[i].totalCrit > critRows[j].totalCrit) {
+			swapCrit(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function sortByDamage() {
+	for (var i=0; i<damageRows.length; i++ ) { 
+		for (var j=0; j<damageRows.length; j++ ) { 
+			if (damageRows[i].minDamage > damageRows[j].minDamage) {
+			swapDamage(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function sortByLifesteal() {
+	for (var i=0; i<lifestealRows.length; i++ ) { 
+		for (var j=0; j<lifestealRows.length; j++ ) { 
+			if (lifestealRows[i].totalLifesteal > lifestealRows[j].totalLifesteal) {
+			swapLifesteal(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function sortByHealth() {
+	for (var i=0; i<healthRows.length; i++ ) { 
+		for (var j=0; j<healthRows.length; j++ ) { 
+			if (healthRows[i].totalHealth > healthRows[j].totalHealth) {
+			swapHealth(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function sortByArmor() {
+	for (var i=0; i<armorRows.length; i++ ) { 
+		for (var j=0; j<armorRows.length; j++ ) { 
+			if (armorRows[i].totalArmor > armorRows[j].totalArmor) {
+			swapArmor(i,j);
+			}
+		} 
+	} 
+}%>
+
+
+<% function sortByPlayerKills() {
+	for (var i=0; i<playerKills.length; i++ ) { 
+		for (var j=0; j<playerKills.length; j++ ) { 
+			if (playerKills[i].player_kills > playerKills[j].player_kills) {
+				swapPlayerKills(i,j);
+			}
+		} 
+	} 
+}%>
+
+<% function swapPlayerKills(a,b) {
+	var temp = playerKills[a];
+	var temp2 = playerKills[b];
+	playerKills[a] = temp2;
+	playerKills[b] = temp;
+}%>
+
+<% function swapEXP(a,b) {
+	var temp = expRows[a];
+	var temp2 = expRows[b];
+	expRows[a] = temp2;
+	expRows[b] = temp;
+}%>
+
+<% function swapDamage(a,b) {
+	var temp = damageRows[a];
+	var temp2 = damageRows[b];
+	damageRows[a] = temp2;
+	damageRows[b] = temp;
+}%>
+
+<% function swapCrit(a,b) {
+	var temp = critRows[a];
+	var temp2 = critRows[b];
+	critRows[a] = temp2;
+	critRows[b] = temp;
+}%>
+
+<% function swapLifesteal(a,b) {
+	var temp = lifestealRows[a];
+	var temp2 = lifestealRows[b];
+	lifestealRows[a] = temp2;
+	lifestealRows[b] = temp;
+}%>
+
+<% function swapHealth(a,b) {
+	var temp = healthRows[a];
+	var temp2 = healthRows[b];
+	healthRows[a] = temp2;
+	healthRows[b] = temp;
+}%>
+
+<% function swapArmor(a,b) {
+	var temp = armorRows[a];
+	var temp2 = armorRows[b];
+	armorRows[a] = temp2;
+	armorRows[b] = temp;
+}%>
+
+<div class="nav" id = "nav">
+
+	<ul>
+	
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='level'> Level </button>
+     </form>
+	</a>
+	</li>
+	
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='rebirths'> Rebirths </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='damage'> Damage </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='crit'> Crit </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='health'> Health </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='lifesteal'> Lifesteal </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='armor'> Armor </button>
+     </form>
+     </a>
+	</li>
+	
+	<li>
+	<a>
+	 <form action='/ranking' method='post'>
+     <button type='submit' name = 'tab' value='playerkills'> Hero Kills </button>
+     </form>
+     </a>
+	</li>
+
+	<li>
+	<a>
+	 <form action='/lookup' method='get'>
+     <button type='submit'> Hero Lookup </button>
+     </form>
+     </a>
+	</li>
+	
+	
+	</ul>
+
+
+	</div>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  	<tr>
+  		<td id = 'search'>
+			<h5>
+				<% if (tab_name == 'level') { %>
+					Top 100 Players by Level
+				<% } %>
+
+				<% if (tab_name == 'damage') { %>
+					Top 100 Players by Damage
+				<% } %>
+
+				<% if (tab_name == 'crit') { %>
+					Top 100 Players by Crit
+				<% } %>
+
+				<% if (tab_name == 'health') { %>
+					Top 100 Players by Health
+				<% } %>
+
+				<% if (tab_name == 'lifesteal') { %>
+					Top 100 Players by Lifesteal
+				<% } %>
+
+				<% if (tab_name == 'armor') { %>
+					Top 100 Players by Armor
+				<% } %>
+
+				<% if (tab_name == 'playerkills') { %>
+					Top 100 Players by Hero Kills
+				<% } %>
+
+				<% if (tab_name == 'rebirths') { %>
+					Top 100 Players by Rebirths
+				<% } %>
+
+			</h5>
+  		</td>
+  	</tr>
+
+  	<% if (tab_name == 'level') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + expRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= Math.floor(16*(Math.log10(expRows[i].exp))) %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'damage') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + damageRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= damageRows[i].minDamage %> - <%= damageRows[i].maxDamage %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'crit') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + critRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= critRows[i].totalCrit %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'health') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + healthRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= healthRows[i].totalHealth %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'lifesteal') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + lifestealRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= lifestealRows[i].totalLifesteal %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'armor') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + armorRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= armorRows[i].totalArmor %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'playerkills') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + playerKills[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= playerKills[i].player_kills %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+  	<% if (tab_name == 'rebirths') {%>
+  		<% for (var i=0; i<numAccounts; i++) { %>
+  			<tr>
+  				<td id = 'search'>
+  					<h3><%= (i+1) + '. ' + rebirthRows[i].login.substr(0,18) %></h3>
+  				</td>
+
+  				<td id = 'search'>
+  					<h3><%= rebirthRows[i].numtimes_rebirthed %></h3>
+  				</td>
+  			</tr>
+  		<% } %>
+  	<% } %>
+
+
+  </table>
+</div>
+

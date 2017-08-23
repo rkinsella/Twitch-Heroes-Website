@@ -1,0 +1,397 @@
+<% layout('layout') -%>
+
+<% 
+	var totalxp = rows[0].crafting_exp;
+	var level =  Math.floor(Math.sqrt(rows[0].crafting_exp));
+	var nextLevelExp = Math.floor(Math.pow((level + 1), 2));
+
+	var stone = rows[0].stone;
+	var wood = rows[0].wood;
+
+	var silver = (rows[0].gold)%1000;
+	var gold = Math.floor(rows[0].gold/1000);
+ %>
+
+<div id="table_container">
+  <table border="1" id = 'search'> 
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Crafting Level</h4>
+  		</td>
+  		<td id = 'search'>
+  		<h4><%= level %></h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4>Crafting Experience</h4>
+  		</td>
+  		<td id = 'search'>
+  		<h4><%= totalxp %>/<%= nextLevelExp %></h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4><%= stone %><img style="vertical-align:middle" src="images/stone-icon.png"/></h4>
+  		</td>
+
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4><%= wood %><img style="vertical-align:middle" src="images/wood-icon.png"/></h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<td id = 'search'>
+  		<h4><%= gold %> <img style="vertical-align:middle" src="images/gold-icon.png"/> <%= silver %> <img style="vertical-align:middle" src="images/silver-coin.png"/></h4>
+  		</td>
+  	</tr>
+
+  	<tr>
+  		<form action='/crafting/convert' method='get'>
+			<td id = 'search'>
+			<h4>Convert (1:2 ratio)</h4>
+			<select name="resource">
+				<option value="1"><h4>Stone</h4></option>
+				<option value="2"><h4>Wood</h4></option>
+			</select>
+			<input type="text" name="amount" placeholder=0>
+			</td>
+
+			<td id = 'search'>
+				<button type='submit' name = 'convert'> 
+			<h4>Convert</h4>
+			</td>
+  		</form>
+  	</tr>
+
+  	<% if(level >= 70) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+
+				<td id = 'search'>
+				<h4>	
+					<button type='submit' name = 'craft' value='8' id = 'craft'> Sapphire Ring </button> 
+				</h4>
+				</td>
+				<td id = 'search'>
+					<h4>
+						25 <img style="vertical-align:middle" src="images/stone-icon.png"/> 25 <img style="vertical-align:middle" src="images/wood-icon.png"/> 2 <img style="vertical-align:middle" src="images/gold-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+					</h4>
+				</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='8' id = 'craft'> Sapphire Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					25 <img style="vertical-align:middle" src="images/stone-icon.png"/> 25 <img style="vertical-align:middle" src="images/wood-icon.png"/> 2 <img style="vertical-align:middle" src="images/gold-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<% if(level >= 60) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='7' id = 'craft'> Ruby Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					21 <img style="vertical-align:middle" src="images/stone-icon.png"/> 21 <img style="vertical-align:middle" src="images/wood-icon.png"/> 1 <img style="vertical-align:middle" src="images/gold-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='7' id = 'craft'> Ruby Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					21 <img style="vertical-align:middle" src="images/stone-icon.png"/> 21 <img style="vertical-align:middle" src="images/wood-icon.png"/> 1 <img style="vertical-align:middle" src="images/gold-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+	<% if(level >= 50) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='6' id = 'craft'> Emerald Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					18 <img style="vertical-align:middle" src="images/stone-icon.png"/> 18 <img style="vertical-align:middle" src="images/wood-icon.png"/> 1 <img style="vertical-align:middle" src="images/gold-icon.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='6' id = 'craft'> Emerald Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					18 <img style="vertical-align:middle" src="images/stone-icon.png"/> 18 <img style="vertical-align:middle" src="images/wood-icon.png"/> 1 <img style="vertical-align:middle" src="images/gold-icon.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<% if(level >= 40) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='5' id = 'craft'> Diamond Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					15 <img style="vertical-align:middle" src="images/stone-icon.png"/> 15 <img style="vertical-align:middle" src="images/wood-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='5' id = 'craft'> Diamond Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					15 <img style="vertical-align:middle" src="images/stone-icon.png"/> 15 <img style="vertical-align:middle" src="images/wood-icon.png"/> 500 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<% if(level >= 30) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='4' id = 'craft'> Gold Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					12 <img style="vertical-align:middle" src="images/stone-icon.png"/> 12 <img style="vertical-align:middle" src="images/wood-icon.png"/> 400 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='4' id = 'craft'> Gold Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					12 <img style="vertical-align:middle" src="images/stone-icon.png"/> 12 <img style="vertical-align:middle" src="images/wood-icon.png"/> 400 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<% if(level >= 20) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='3' id = 'craft'> Steel Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					9 <img style="vertical-align:middle" src="images/stone-icon.png"/> 9 <img style="vertical-align:middle" src="images/wood-icon.png"/> 300 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='3' id = 'craft'> Steel Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					9 <img style="vertical-align:middle" src="images/stone-icon.png"/> 9 <img style="vertical-align:middle" src="images/wood-icon.png"/> 300 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<% if(level >= 10) { %>
+		<tr>
+			<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='2' id = 'craft'> Iron Ring </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					6 <img style="vertical-align:middle" src="images/stone-icon.png"/> 6 <img style="vertical-align:middle" src="images/wood-icon.png"/> 200 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+
+		<tr>
+			<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+			<td id = 'search'>
+			<h4>
+				<button type='submit' name = 'craft' value='2' id = 'craft'> Iron Necklace </button> 
+			</h4>
+			</td>
+
+			<td id = 'search'>
+				<h4>
+					6 <img style="vertical-align:middle" src="images/stone-icon.png"/> 6 <img style="vertical-align:middle" src="images/wood-icon.png"/> 200 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+				</h4>
+			</td>
+			</form>
+		</tr>
+  	<% } %>
+
+  	<tr>
+  		<form action='/crafting/ring' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+  		<td id = 'search'>
+  		<h4>
+			<button type='submit' name = 'craft' value='1' id = 'craft'> Wooden Ring </button> 
+  		</h4>
+  		</td>
+
+  		<td id = 'search'>
+  			<h4>
+  				3 <img style="vertical-align:middle" src="images/stone-icon.png"/> 3 <img style="vertical-align:middle" src="images/wood-icon.png"/> 100 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+  			</h4>
+  		</td>
+  		</form>
+  	</tr>
+
+  	<tr>
+  		<form action='/crafting/necklace' method='get'>
+				<td id = 'search'>
+					<input type="text" name="amount" placeholder=1>
+				</td>
+  		<td id = 'search'>
+  		<h4>
+			<button type='submit' name = 'craft' value='1' id = 'craft'> Wooden Necklace </button> 
+  		</h4>
+  		</td>
+
+  		<td id = 'search'>
+  			<h4>
+  				3 <img style="vertical-align:middle" src="images/stone-icon.png"/> 3 <img style="vertical-align:middle" src="images/wood-icon.png"/> 100 <img style="vertical-align:middle" src="images/silver-coin.png"/>
+  			</h4>
+  		</td>
+  		</form>
+  	</tr>
+
+  </table>
+</div>
+
+
+
